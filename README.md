@@ -155,11 +155,16 @@ pry(main)> market.vendors
 pry(main)> market.vendor_names
 #=> ["Rocky Mountain Fresh", "Ba-Nom-a-Nom", "Palisade Peach Shack"]
 
+
+
 pry(main)> market.vendors_that_sell(item1)
 #=> [#<Vendor:0x00007fe1348a1160...>, #<Vendor:0x00007fe134910650...>]
 
 pry(main)> market.vendors_that_sell(item4)
 #=> [#<Vendor:0x00007fe1349bed40...>]
+
+
+
 
 pry(main)> vendor1.potential_revenue
 #=> 29.75
