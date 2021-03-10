@@ -30,16 +30,26 @@ class Market
   end
 
   def total_inventory
-  info = {}
+  @total_inventory = {}
   @vendors.each do |vendor|
     vendor.inventory.each do |item|
-      if info[item[0]].nil?
-        info[item[0]] = {quantity: 0, vendors: []}
+      if @total_inventory[item[0]].nil?
+        @total_inventory[item[0]] = {quantity: 0, vendors: []}
       end
-      info[item[0]][:quantity] += item[1]
-      info[item[0]][:vendors] << vendor
+      @total_inventory[item[0]][:quantity] += item[1]
+      @total_inventory[item[0]][:vendors] << vendor
       end
     end
-    info
+    @total_inventory
+  end
+
+  def overstocked_items
+    overstocked_items = []
+    @total_inventory.each do |item_inventory|
+      if item_inventory[1][:quantity] > 50 && item_inventory[1][:vendors].count > 1
+        overstocked_items << item_inventory[0]
+      end
+    end
+    overstocked_items
   end
 end
