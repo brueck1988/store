@@ -18,4 +18,14 @@ class Market
     end
     vendor_names
   end
+
+  def vendors_that_sell(item)
+    vendors_with_item = []
+    @vendors.each do |vendor|
+      vendor.inventory.keys.each do |inventory_item|
+        vendors_with_item << vendor if inventory_item.name == item.name
+      end
+    end
+    vendors_with_item
+  end
 end
