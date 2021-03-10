@@ -32,10 +32,10 @@ pry(main)> require './lib/vendor'
 #=> true
 
 pry(main)> item1 = Item.new({name: 'Peach', price: "$0.75"})
-#=> #<Item:0x007f9c56740d48...>
+#=> item1
 
 pry(main)> item2 = Item.new({name: 'Tomato', price: '$0.50'})
-#=> #<Item:0x007f9c565c0ce8...>
+#=> item2
 
 pry(main)> item2.name
 #=> "Tomato"
@@ -58,7 +58,7 @@ pry(main)> vendor.check_stock(item1)
 pry(main)> vendor.stock(item1, 30)
 
 pry(main)> vendor.inventory
-#=> {#<Item:0x007f9c56740d48...> => 30}
+#=> {item1 => 30}
 
 pry(main)> vendor.check_stock(item1)
 #=> 30
@@ -71,7 +71,7 @@ pry(main)> vendor.check_stock(item1)
 pry(main)> vendor.stock(item2, 12)
 
 pry(main)> vendor.inventory
-#=> {#<Item:0x007f9c56740d48...> => 55, #<Item:0x007f9c565c0ce8...> => 12}
+#=> {item1 => 55, item2 => 12}
 ```
 
 ## Iteration 2 - Market and Vendors
@@ -113,33 +113,33 @@ pry(main)> market.vendors
 #=> []
 
 pry(main)> vendor1 = Vendor.new("Rocky Mountain Fresh")
-#=> #<Vendor:0x00007fe1348a1160...>
+#=> vendor1
 
 pry(main)> item1 = Item.new({name: 'Peach', price: "$0.75"})
-#=> #<Item:0x007f9c56740d48...>
+#=> item1
 
 pry(main)> item2 = Item.new({name: 'Tomato', price: "$0.50"})
-#=> #<Item:0x007f9c565c0ce8...>
+#=> item2
 
 pry(main)> item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
-#=> #<Item:0x007f9c562a5f18...>
+#=> item3
 
 pry(main)> item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
-#=> #<Item:0x007f9c56343038...>
+#=> item4
 
 pry(main)> vendor1.stock(item1, 35)
 
 pry(main)> vendor1.stock(item2, 7)
 
 pry(main)> vendor2 = Vendor.new("Ba-Nom-a-Nom")
-#=> #<Vendor:0x00007fe1349bed40...>
+#=> vendor2
 
 pry(main)> vendor2.stock(item4, 50)
 
 pry(main)> vendor2.stock(item3, 25)
 
 pry(main)> vendor3 = Vendor.new("Palisade Peach Shack")
-#=> #<Vendor:0x00007fe134910650...>
+#=> vendor3
 
 pry(main)> vendor3.stock(item1, 65)
 
@@ -150,7 +150,7 @@ pry(main)> market.add_vendor(vendor2)
 pry(main)> market.add_vendor(vendor3)
 
 pry(main)> market.vendors
-#=> [#<Vendor:0x00007fe1348a1160...>, #<Vendor:0x00007fe1349bed40...>, #<Vendor:0x00007fe134910650...>]
+#=> [vendor1, vendor2, vendor3]
 
 pry(main)> market.vendor_names
 #=> ["Rocky Mountain Fresh", "Ba-Nom-a-Nom", "Palisade Peach Shack"]
@@ -158,10 +158,10 @@ pry(main)> market.vendor_names
 
 
 pry(main)> market.vendors_that_sell(item1)
-#=> [#<Vendor:0x00007fe1348a1160...>, #<Vendor:0x00007fe134910650...>]
+#=> [vendor1, vendor3]
 
 pry(main)> market.vendors_that_sell(item4)
-#=> [#<Vendor:0x00007fe1349bed40...>]
+#=> [vendor2]
 
 
 
@@ -206,33 +206,33 @@ pry(main)> market = Market.new("South Pearl Street Farmers Market")
 #=> #<Market:0x00007fe134933e20...>
 
 pry(main)> item1 = Item.new({name: "Peach", price: "$0.75"})
-#=> #<Item:0x007f9c56740d48...>
+#=> item1
 
 pry(main)> item2 = Item.new({name: "Tomato", price: "$0.50"})
-#=> #<Item:0x007f9c565c0ce8...>
+#=> item2
 
 pry(main)> item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
-#=> #<Item:0x007f9c562a5f18...>
+#=> item3
 
 pry(main)> item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
-#=> #<Item:0x007f9c56343038...>
+#=> item4
 
 pry(main)> vendor1 = Vendor.new("Rocky Mountain Fresh")
-#=> #<Vendor:0x00007fe1348a1160...>
+#=> vendor1
 
 pry(main)> vendor1.stock(item1, 35)
 
 pry(main)> vendor1.stock(item2, 7)
 
 pry(main)> vendor2 = Vendor.new("Ba-Nom-a-Nom")
-#=> #<Vendor:0x00007fe1349bed40...>
+#=> vendor2
 
 pry(main)> vendor2.stock(item4, 50)
 
 pry(main)> vendor2.stock(item3, 25)
 
 pry(main)> vendor3 = Vendor.new("Palisade Peach Shack")
-#=> #<Vendor:0x00007fe134910650...>
+#=> vendor3
 
 pry(main)> vendor3.stock(item1, 65)
 
@@ -246,26 +246,26 @@ pry(main)> market.add_vendor(vendor3)
 
 pry(main)> market.total_inventory
 #=> {
-  #   #<Item:0x007f9c56740d48...> => {
-  #     quantity: 100,
-  #     vendors: [#<Vendor:0x00007fe1348a1160...>, #<Vendor:0x00007fe134910650...>]
-  #   },
-  #   #<Item:0x007f9c565c0ce8...> => {
-  #     quantity: 7,
-  #     vendors: [#<Vendor:0x00007fe1348a1160...>]
-  #   },
-  #   #<Item:0x007f9c56343038...> => {
-  #     quantity: 50,
-  #     vendors: [#<Vendor:0x00007fe1349bed40...>]
-  #   },
-  #   #<Item:0x007f9c562a5f18...> => {
-  #     quantity: 35,
-  #     vendors: [#<Vendor:0x00007fe1349bed40...>, #<Vendor:0x00007fe134910650...>]
-  #   },
-  # }
+    item1 => {
+      quantity: 100,
+      vendors: [vendor1, vendor3]
+    },
+    item2 => {
+      quantity: 7,
+      vendors: [vendor1]
+    },
+    item4 => {
+      quantity: 50,
+      vendors: [vendor2]
+    },
+    item3 => {
+      quantity: 35,
+      vendors: [vendor2, vendor3]
+    },
+  }
 
 pry(main)> market.overstocked_items
-#=> [#<Item:0x007f9c56740d48...>]
+#=> [item1]
 
 ```
 
@@ -302,16 +302,16 @@ pry(main)> require './lib/market'
 #=> true
 
 pry(main)> item1 = Item.new({name: 'Peach', price: "$0.75"})
-#=> #<Item:0x007f9c56740d48...>
+#=> item1
 
 pry(main)> item2 = Item.new({name: 'Tomato', price: '$0.50'})
-#=> #<Item:0x007f9c565c0ce8...>
+#=> item2
 
 pry(main)> item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
-#=> #<Item:0x007f9c562a5f18...>
+#=> item3
 
 pry(main)> item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
-#=> #<Item:0x007f9c56343038...>
+#=> item4
 
 pry(main)> item5 = Item.new({name: 'Onion', price: '$0.25'})
 #=> #<Item:0x007f9c561636c8...>
@@ -328,21 +328,21 @@ pry(main)> market.date
 # A market will now be created with a date - whatever date the market is created on through the use of `Date.today`. The addition of a date to the market should NOT break any previous tests.  The `date` method will return a string representation of the date - 'dd/mm/yyyy'. We want you to test this in with a date that is IN THE PAST. In order to test the date method in a way that will work today, tomorrow and on any date in the future, you will need to use a stub :)
 
 pry(main)> vendor1 = Vendor.new("Rocky Mountain Fresh")
-#=> #<Vendor:0x00007fe1348a1160...>
+#=> vendor1
 
 pry(main)> vendor1.stock(item1, 35)
 
 pry(main)> vendor1.stock(item2, 7)
 
 pry(main)> vendor2 = Vendor.new("Ba-Nom-a-Nom")
-#=> #<Vendor:0x00007fe1349bed40...>
+#=> vendor2
 
 pry(main)> vendor2.stock(item4, 50)
 
 pry(main)> vendor2.stock(item3, 25)
 
 pry(main)> vendor3 = Vendor.new("Palisade Peach Shack")
-#=> #<Vendor:0x00007fe134910650...>
+#=> vendor3
 
 pry(main)> vendor3.stock(item1, 65)
 
